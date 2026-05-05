@@ -5,14 +5,36 @@ public class Player {
     private double angel;
     private double speed;
 
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getAngel() {
+        return angel;
+    }
+
     public Player(double x, double y, double speed){
         this.x = x;
         this.y = y;
         this.speed = speed;
     }
 
-    public void moveTo(){
+    public void moveForward(){
         x += Math.cos(angel) * speed;
+        y += Math.sin(angel) * speed;
+    }
+
+    public void moveBackwards(){
+        x -= Math.cos(angel) * speed;
+        y -= Math.sin(angel) * speed;
+    }
+
+    public void moveStrafe(){
+        x -= Math.cos(angel) * speed;
         y += Math.sin(angel) * speed;
     }
 
