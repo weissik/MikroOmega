@@ -4,19 +4,29 @@ public class Game {
 
     private Player player;
     private ArrayList<Bullet> bullets;
+    private KeyInput key;
+    private MouseInput mouse;
 
-    public Game(){
+    public Game(KeyInput key, MouseInput mouse) {
         player = new Player(400,300,5);
         bullets = new ArrayList<>();
+        this.key = key;
+        this.mouse = mouse;
     }
 
-    public void update(KeyInput keyInput, MouseInput mouseInput){
+    public void update(){
 
-        if (keyInput.up) player.moveForward();
-        if (keyInput.down) player.moveBackwards();
-        if (keyInput.left || keyInput.right) player.moveStrafe();
+        player.rotateTo(mouse.mouseX, mouse.mouseY);
 
-        if (mouseInput.clicked) shoot();
+        if (key.up) player.moveForward();
+        if (key.down) player.moveBackwards();
+        if (key.left) player.moveStrafeLeft();
+        if (key.right) player.moveStrafeRight();
+
+        if (mouse.clicked) {
+            shoot();
+            mouse.clicked = false;
+        }
 
         for (Bullet bullet : bullets){
             bullet.update();

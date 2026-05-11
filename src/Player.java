@@ -33,9 +33,14 @@ public class Player {
         y -= Math.sin(angel) * speed;
     }
 
-    public void moveStrafe(){
-        x -= Math.cos(angel) * speed;
-        y += Math.sin(angel) * speed;
+    public void moveStrafeLeft(){
+        x += -Math.sin(angel) * speed;
+        y += Math.cos(angel) * speed;
+    }
+
+    public void moveStrafeRight(){
+        x -= -Math.cos(angel) * speed;
+        y -= Math.sin(angel) * speed;
     }
 
     public void rotateTo(double mouseX, double mouseY){
